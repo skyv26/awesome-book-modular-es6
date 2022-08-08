@@ -7,10 +7,9 @@ import mainComponent from './modules/mainComponent.js';
 import Header from './modules/headerComponent.js';
 import footerComponent from './modules/footerComponent.js';
 import Book from './modules/book.js';
+import DateTimeLuxon from './modules/dateTimeLuxon.js';
 
 const root = document.querySelector('#root');
-
-// const dateTime = document.querySelector('.date-time');
 
 const header = new Header().component();
 
@@ -68,16 +67,8 @@ uList.addEventListener('click', (e) => {
   }
 });
 
-// const options = {
-//   weekday: 'long',
-//   year: 'numeric',
-//   month: 'long',
-//   day: 'numeric',
-// };
-
-// setInterval(() => {
-//   const dateObj = new Date();
-//   const dateString = dateObj.toLocaleString('en-US', options).split(',').slice(1).join('');
-//   const timeString = dateObj.toLocaleTimeString('en-US');
-//   dateTime.textContent = `${dateString}, ${timeString}`;
-// }, 1000);
+setInterval(() => {
+  const getClock = document.querySelector('.date-time');
+  const timeStr = new DateTimeLuxon().getTime();
+  getClock.textContent=timeStr;
+}, 1000);

@@ -34,6 +34,9 @@ class Header {
           </ul>
         </nav>
       </div>
+      <div class="clock">
+        <p class="date-time"></p>
+      </div>  
     </header>`;
     return this.str;
   }
