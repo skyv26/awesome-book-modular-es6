@@ -70,5 +70,5 @@ uList.addEventListener('click', (e) => {
 setInterval(() => {
   const getClock = document.querySelector('.date-time');
   const timeStr = new DateTimeLuxon().getTime();
-  getClock.textContent=timeStr;
+  getClock.textContent = timeStr;
 }, 1000);

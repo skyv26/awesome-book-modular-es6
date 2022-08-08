@@ -19,7 +19,7 @@ class DateTimeLuxon {
     this.dt += ', ';
     this.dt += DateTime.now().setLocale('en-US').toLocaleString(DateTime.TIME_WITH_SECONDS);
     return this.dt;
-}
+  }
 }
 
 export default DateTimeLuxon;
