@@ -1,7 +1,10 @@
+import viewBook from "./modules/viewBook.js";
+
 const uList = document.querySelector('.uList');
-const form = document.querySelector('.input-form');
-const menu = document.querySelector('.menu-ul');
-const dateTime = document.querySelector('.date-time');
+const main = document.querySelector('.main');
+// const form = document.querySelector('.input-form');
+// const menu = document.querySelector('.menu-ul');
+// const dateTime = document.querySelector('.date-time');
 
 class Book {
   constructor() {
@@ -54,55 +57,57 @@ class Book {
   }
 }
 
-const book = new Book();
-book.loadData();
+// main.insertAdjacentHTML('afterbegin', viewBook({}));
 
-form.addEventListener('submit', function formHandler(e) {
-  e.preventDefault();
-  const title = this.querySelector('.form-title').value;
-  const author = this.querySelector('.form-author').value;
-  book.add(title, author);
-  this.reset();
-});
+// const book = new Book();
+// book.loadData();
 
-uList.addEventListener('click', (e) => {
-  const { target } = e;
-  if (target.nodeName.toLowerCase() === 'button') {
-    const getId = target.classList[1].split('-')[1];
-    book.remove(getId);
-  }
-});
+// form.addEventListener('submit', function formHandler(e) {
+//   e.preventDefault();
+//   const title = this.querySelector('.form-title').value;
+//   const author = this.querySelector('.form-author').value;
+//   book.add(title, author);
+//   this.reset();
+// });
 
-menu.addEventListener('click', (e) => {
-  const target = e.target ?? null;
-  if (target.nodeName.toLowerCase() === 'a') {
-    const allAnchor = menu.querySelectorAll('.link');
-    allAnchor.forEach((each) => {
-      each.classList.remove('active');
-    });
-    target.classList.add('active');
-    const sectionId = target.getAttribute('href');
-    const targetSection = document.querySelector(sectionId);
-    const getAllLink = document.querySelectorAll('.section');
+// uList.addEventListener('click', (e) => {
+//   const { target } = e;
+//   if (target.nodeName.toLowerCase() === 'button') {
+//     const getId = target.classList[1].split('-')[1];
+//     book.remove(getId);
+//   }
+// });
 
-    getAllLink.forEach((each) => {
-      each.classList.remove('active');
-    });
+// menu.addEventListener('click', (e) => {
+//   const target = e.target ?? null;
+//   if (target.nodeName.toLowerCase() === 'a') {
+//     const allAnchor = menu.querySelectorAll('.link');
+//     allAnchor.forEach((each) => {
+//       each.classList.remove('active');
+//     });
+//     target.classList.add('active');
+//     const sectionId = target.getAttribute('href');
+//     const targetSection = document.querySelector(sectionId);
+//     const getAllLink = document.querySelectorAll('.section');
 
-    targetSection.classList.add('active');
-  }
-});
+//     getAllLink.forEach((each) => {
+//       each.classList.remove('active');
+//     });
 
-const options = {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-};
+//     targetSection.classList.add('active');
+//   }
+// });
 
-setInterval(() => {
-  const dateObj = new Date();
-  const dateString = dateObj.toLocaleString('en-US', options).split(',').slice(1).join('');
-  const timeString = dateObj.toLocaleTimeString('en-US');
-  dateTime.textContent = `${dateString}, ${timeString}`;
-}, 1000);
+// const options = {
+//   weekday: 'long',
+//   year: 'numeric',
+//   month: 'long',
+//   day: 'numeric',
+// };
+
+// setInterval(() => {
+//   const dateObj = new Date();
+//   const dateString = dateObj.toLocaleString('en-US', options).split(',').slice(1).join('');
+//   const timeString = dateObj.toLocaleTimeString('en-US');
+//   dateTime.textContent = `${dateString}, ${timeString}`;
+// }, 1000);
