@@ -1,11 +1,12 @@
-import viewBook from "./modules/viewBook.js";
-import heading from "./modules/heading.js";
-import bookContainer from "./modules/bookContainer.js";
+import viewBook from './modules/viewBook.js';
+import heading from './modules/heading.js';
+import bookContainer from './modules/bookContainer.js';
+import contact from './modules/contact.js';
 
 const uList = document.querySelector('.uList');
 const main = document.querySelector('.main');
 // const form = document.querySelector('.input-form');
-// const menu = document.querySelector('.menu-ul');
+const menu = document.querySelector('.menu-ul');
 // const dateTime = document.querySelector('.date-time');
 
 class Book {
@@ -60,6 +61,7 @@ class Book {
 }
 
 main.insertAdjacentHTML('afterbegin', viewBook({ heading, bookContainer}));
+main.insertAdjacentHTML('beforeend', contact({ heading }));
 
 // const book = new Book();
 // book.loadData();
@@ -80,25 +82,25 @@ main.insertAdjacentHTML('afterbegin', viewBook({ heading, bookContainer}));
 //   }
 // });
 
-// menu.addEventListener('click', (e) => {
-//   const target = e.target ?? null;
-//   if (target.nodeName.toLowerCase() === 'a') {
-//     const allAnchor = menu.querySelectorAll('.link');
-//     allAnchor.forEach((each) => {
-//       each.classList.remove('active');
-//     });
-//     target.classList.add('active');
-//     const sectionId = target.getAttribute('href');
-//     const targetSection = document.querySelector(sectionId);
-//     const getAllLink = document.querySelectorAll('.section');
+menu.addEventListener('click', (e) => {
+  const target = e.target ?? null;
+  if (target.nodeName.toLowerCase() === 'a') {
+    const allAnchor = menu.querySelectorAll('.link');
+    allAnchor.forEach((each) => {
+      each.classList.remove('active');
+    });
+    target.classList.add('active');
+    const sectionId = target.getAttribute('href');
+    const targetSection = document.querySelector(sectionId);
+    const getAllLink = document.querySelectorAll('.section');
 
-//     getAllLink.forEach((each) => {
-//       each.classList.remove('active');
-//     });
+    getAllLink.forEach((each) => {
+      each.classList.remove('active');
+    });
 
-//     targetSection.classList.add('active');
-//   }
-// });
+    targetSection.classList.add('active');
+  }
+});
 
 // const options = {
 //   weekday: 'long',
