@@ -4,11 +4,11 @@ import bookContainer from './modules/bookContainer.js';
 import contact from './modules/contact.js';
 import bookForm from './modules/bookForm.js';
 import mainComponent from './modules/mainComponent.js';
+import Header from './modules/headerComponent.js';
+import footerComponent from './modules/footerComponent.js';
 
-const uList = document.querySelector('.uList');
-const main = document.querySelector('.main');
-// const form = document.querySelector('.input-form');
-const menu = document.querySelector('.menu-ul');
+const root = document.querySelector('#root');
+
 // const dateTime = document.querySelector('.date-time');
 
 class Book {
@@ -62,31 +62,20 @@ class Book {
   }
 }
 
-mainComponent([
-  viewBook({ heading, bookContainer }),
-  bookForm({ heading, add: true }),
-  contact({ heading }),
-]);
+const header = new Header().component();
 
-// const book = new Book();
-// book.loadData();
+root.insertAdjacentHTML('afterbegin', header);
+root.insertAdjacentHTML('beforeend', mainComponent(
+  {
+    children: [
+      viewBook({ heading, bookContainer }),
+      bookForm({ heading, add: true }),
+      contact({ heading })].join(''),
+  },
+));
+root.insertAdjacentHTML('beforeend', footerComponent());
 
-// form.addEventListener('submit', function formHandler(e) {
-//   e.preventDefault();
-//   const title = this.querySelector('.form-title').value;
-//   const author = this.querySelector('.form-author').value;
-//   book.add(title, author);
-//   this.reset();
-// });
-
-// uList.addEventListener('click', (e) => {
-//   const { target } = e;
-//   if (target.nodeName.toLowerCase() === 'button') {
-//     const getId = target.classList[1].split('-')[1];
-//     book.remove(getId);
-//   }
-// });
-
+const menu = document.querySelector('.menu-ul');
 menu.addEventListener('click', (e) => {
   const target = e.target ?? null;
   if (target.nodeName.toLowerCase() === 'a') {
@@ -106,6 +95,28 @@ menu.addEventListener('click', (e) => {
     targetSection.classList.add('active');
   }
 });
+
+const form = document.querySelector('.input-form');
+const uList = document.querySelector('.uList');
+
+form.addEventListener('submit', function formHandler(e) {
+  e.preventDefault();
+  const title = this.querySelector('.form-title').value;
+  const author = this.querySelector('.form-author').value;
+  book.add(title, author);
+  this.reset();
+});
+
+uList.addEventListener('click', (e) => {
+  const { target } = e;
+  if (target.nodeName.toLowerCase() === 'button') {
+    const getId = target.classList[1].split('-')[1];
+    book.remove(getId);
+  }
+});
+
+const book = new Book();
+book.loadData();
 
 // const options = {
 //   weekday: 'long',
