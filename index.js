@@ -6,61 +6,11 @@ import bookForm from './modules/bookForm.js';
 import mainComponent from './modules/mainComponent.js';
 import Header from './modules/headerComponent.js';
 import footerComponent from './modules/footerComponent.js';
+import Book from './modules/book.js';
 
 const root = document.querySelector('#root');
 
 // const dateTime = document.querySelector('.date-time');
-
-class Book {
-  constructor() {
-    this.bookObject = {};
-    this.preserveDataList = [];
-  }
-
-  loadData() {
-    this.localStorageHandler(false);
-    this.objIteratorHandler(true);
-  }
-
-  add(title, author) {
-    this.bookObject = { title, author };
-    this.preserveDataList.push(this.bookObject);
-    this.objIteratorHandler();
-  }
-
-  remove(objId) {
-    this.requestedDataHandler();
-    this.preserveDataList.splice(objId, 1);
-    this.objIteratorHandler();
-  }
-
-  objIteratorHandler(mode = false) {
-    const htmlObjList = this.preserveDataList.map((each, id) => `<li class="list"><h2 class="bookTitle">"${each.title}"&nbsp;by</h2><h3 class="bookAuthor">&nbsp;${each.author}</h3><button class="remove-btn btn-${id}">Remove</button></li>`);
-    uList.textContent = '';
-
-    if (!mode) {
-      this.localStorageHandler();
-    }
-
-    htmlObjList.forEach((each) => {
-      uList.insertAdjacentHTML('afterbegin', each);
-    });
-  }
-
-  localStorageHandler(mode = true) {
-    if (mode) {
-      localStorage.setItem('data', JSON.stringify(this.preserveDataList));
-    } else {
-      this.preserveDataList = JSON.parse(localStorage.getItem('data')) ?? []; // Nullish Coelasing Operator
-    }
-  }
-
-  requestedDataHandler() {
-    if (this.preserveDataList.length === 0) {
-      this.localStorageHandler(false);
-    }
-  }
-}
 
 const header = new Header().component();
 
@@ -99,6 +49,9 @@ menu.addEventListener('click', (e) => {
 const form = document.querySelector('.input-form');
 const uList = document.querySelector('.uList');
 
+const book = new Book({ uList });
+book.loadData();
+
 form.addEventListener('submit', function formHandler(e) {
   e.preventDefault();
   const title = this.querySelector('.form-title').value;
@@ -114,9 +67,6 @@ uList.addEventListener('click', (e) => {
     book.remove(getId);
   }
 });
-
-const book = new Book();
-book.loadData();
 
 // const options = {
 //   weekday: 'long',
