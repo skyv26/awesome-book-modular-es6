@@ -1,4 +1,6 @@
 import viewBook from "./modules/viewBook.js";
+import heading from "./modules/heading.js";
+import bookContainer from "./modules/bookContainer.js";
 
 const uList = document.querySelector('.uList');
 const main = document.querySelector('.main');
@@ -57,7 +59,7 @@ class Book {
   }
 }
 
-// main.insertAdjacentHTML('afterbegin', viewBook({}));
+main.insertAdjacentHTML('afterbegin', viewBook({ heading, bookContainer}));
 
 // const book = new Book();
 // book.loadData();
