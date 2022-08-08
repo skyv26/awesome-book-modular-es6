@@ -9,10 +9,11 @@
 - Major languages: JavaScript (ES6)
 - Frameworks: No framework only Vanilla JS
 - Technologies used: HTML, CSS and JavaScript
+- Luxon Library for Date and Time
 
 ## Live Demo
 
-[click here for demo](https://skyv26.github.io/awesome-book/)
+[click here for demo](https://skyv26.github.io/awesome-book-modular-es6)
 
 
 ## Getting Started
@@ -41,9 +42,6 @@ To get a local copy up and running follow these simple example steps.
 
 - GitHub: [@skyv26](https://github.com/skyv26)
 
-👤 **Author2**
-
-- GitHub: [@shella12](https://github.com/shella12)
 
 ## 🤝 Contributing
 
