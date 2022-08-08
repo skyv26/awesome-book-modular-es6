@@ -3,6 +3,7 @@ import heading from './modules/heading.js';
 import bookContainer from './modules/bookContainer.js';
 import contact from './modules/contact.js';
 import bookForm from './modules/bookForm.js';
+import mainComponent from './modules/mainComponent.js';
 
 const uList = document.querySelector('.uList');
 const main = document.querySelector('.main');
@@ -61,9 +62,11 @@ class Book {
   }
 }
 
-main.insertAdjacentHTML('afterbegin', viewBook({ heading, bookContainer}));
-main.insertAdjacentHTML('beforeend', bookForm({ heading, add: true }));
-main.insertAdjacentHTML('beforeend', contact({ heading }));
+mainComponent([
+  viewBook({ heading, bookContainer }),
+  bookForm({ heading, add: true }),
+  contact({ heading }),
+]);
 
 // const book = new Book();
 // book.loadData();
